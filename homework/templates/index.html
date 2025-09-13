@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Price Predictor</title>
+
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      background-color: #4b0958;
+      color: white;
+      padding: 40px 20px;
+      border-bottom: 5px solid #3a0746;
+    }
+
+    header h2 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header h4 {
+      margin: 10px 0 0;
+      font-size: 1.2rem;
+      font-weight: normal;
+    }
+
+    .center-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 20px;
+    }
+
+    .form-container {
+      background-color: rgba(75, 9, 88, 0.1);
+      width: 90%;
+      max-width: 600px;
+      text-align: center;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-align: left;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .radio-group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .radio-group label {
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+      margin-right: 15px;
+      font-weight: normal;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .submit-button {
+      display: inline-block;
+      background-color: #4b0958;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #3a0746;
+    }
+
+    .center-text {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .center-text p {
+      margin: 5px 0;
+      font-size: 1.1rem;
+    }
+
+    #main-title {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .form-container {
+        width: 95%;
+        padding: 20px;
+      }
+
+      header h2 {
+        font-size: 2rem;
+      }
+
+      header h4 {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <h2 id="main-title">
+      House Price Estimator
+    </h2>
+
+    <h4>
+      Enter the details of the house you want to estimate the price for:
+    </h4>
+
+  </header>
+
+
+  <form id='myDialog' method="POST" class="center-form">
+
+    <div class="form-container">
+
+      <label for="fname">Bedrooms:</label>
+      <input type="text" id="bedrooms" name="bedrooms" value="3">
+
+      <label for="fname">Bathrooms:</label>
+      <input type="text" id="bathrooms" name="bathrooms" value="1">
+
+      <label for="fname">Living Space (sqft):</label>
+      <input type="text" id="sqft_living" name="sqft_living" value="1180">
+
+      <label for="fname">Lot size (sqft):</label>
+      <input type="text" id="sqft_lot" name="sqft_lot" value="5650">
+
+      <label for="fname">Floors:</label>
+      <input type="text" id="floors" name="floors" value="1">
+
+      <label for="fname">Waterfront:</label>
+      <div class="radio-group">
+        <input type="radio" id="waterfront_yes" name="waterfront" value="Yes" checked>
+        <label for="waterfront_yes">Yes</label>
+        <input type="radio" id="waterfront_no" name="waterfront" value="No">
+        <label for="waterfront_no">No</label>
+      </div>
+
+      <label for="fname">Condition:</label>
+      <div class="radio-group">
+        <input type="radio" id="condition_1" name="condition" value="1" checked>
+        <label for="condition_1">1 - worst</label>
+        <input type="radio" id="condition_2" name="condition" value="2">
+        <label for="condition_2">2</label>
+        <input type="radio" id="condition_3" name="condition" value="3">
+        <label for="condition_3">3</label>
+        <input type="radio" id="condition_4" name="condition" value="4">
+        <label for="condition_4">4</label>
+        <input type="radio" id="condition_5" name="condition" value="5">
+        <label for="condition_5">5 - best</label>
+      </div>
+
+      <br />
+      <input class="submit-button" type="submit" value="Submit">
+    </div>
+
+    <div class="center-text">
+      <p><strong>Estimated Price:</strong></p>
+      <p> {{ prediction }} </p>
+    </div>
+
+  </form>
+
+</body>
+
+</html>
